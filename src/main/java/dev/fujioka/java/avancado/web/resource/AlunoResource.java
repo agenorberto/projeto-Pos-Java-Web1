@@ -1,5 +1,6 @@
 package dev.fujioka.java.avancado.web.resource;
 
+import dev.fujioka.java.avancado.web.dto.AlunoDTO;
 import dev.fujioka.java.avancado.web.model.Aluno;
 import dev.fujioka.java.avancado.web.repository.AlunoRepository;
 import dev.fujioka.java.avancado.web.service.AlunoService;
@@ -23,7 +24,7 @@ public class AlunoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Aluno> salvar(@RequestBody Aluno aluno){
+    public ResponseEntity<AlunoDTO> salvar(@RequestBody Aluno aluno){
         return ResponseEntity.ok(alunoService.salvar(aluno));
     }
 
