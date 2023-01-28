@@ -3,6 +3,7 @@ package dev.fujioka.java.avancado.web.service;
 import dev.fujioka.java.avancado.web.model.Mensalidade;
 import dev.fujioka.java.avancado.web.repository.MensalidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,11 @@ public class MensalidadeService {
         return mensalidadeRepository.findAll();
     }
 
+    private JmsTemplate jmsTemplate;
+
     public Mensalidade salvar(Mensalidade mensalidade){
+        jmsTemplate.convertAndSend("matricula_mensalidade_queue", mensalidade);
+
         return mensalidadeRepository.save(mensalidade);
     }
 

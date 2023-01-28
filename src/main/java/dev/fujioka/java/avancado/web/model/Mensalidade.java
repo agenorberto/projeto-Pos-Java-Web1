@@ -7,13 +7,14 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
 @Data
-public class Mensalidade {
+public class Mensalidade implements Serializable {
 
     @Id
     @GeneratedValue

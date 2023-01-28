@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Getter
@@ -15,7 +16,7 @@ import java.time.Instant;
 @Entity
 @Data
 @Email
-public class Professor {
+public class Professor implements Serializable {
 
     @Id
     @GeneratedValue
