@@ -82,6 +82,13 @@
 			<version>2.7.7-SNAPSHOT</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>3.1.4</version>
+
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -89,6 +96,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.0.2</version>
 				<configuration>
 					<excludes>
 						<exclude>

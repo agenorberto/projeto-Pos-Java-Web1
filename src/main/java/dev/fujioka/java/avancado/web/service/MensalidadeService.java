@@ -1,5 +1,6 @@
 package dev.fujioka.java.avancado.web.service;
 
+import dev.fujioka.java.avancado.web.dto.MensalidadeDTO;
 import dev.fujioka.java.avancado.web.model.Mensalidade;
 import dev.fujioka.java.avancado.web.repository.MensalidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,15 @@ public class MensalidadeService {
 
     private JmsTemplate jmsTemplate;
 
-    public Mensalidade salvar(Mensalidade mensalidade){
-        jmsTemplate.convertAndSend("matricula_mensalidade_queue", mensalidade);
+    public MensalidadeDTO salvar(Mensalidade mensalidade){
 
-        return mensalidadeRepository.save(mensalidade);
+        mensalidade = mensalidadeRepository.save(mensalidade);
+        jmsTemplate.convertAndSend("matricula_mensalidade_queue", mensalidade);
+        return MensalidadeDTO.builder()
+                .status(mensalidade.getStatus())
+                .valor(mensalidade.getValor())
+                .dataVencimento(mensalidade.getDataVencimento())
+                .build();
     }
 
     public Mensalidade alterar(Mensalidade mensalidade){

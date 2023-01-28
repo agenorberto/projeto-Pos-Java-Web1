@@ -1,5 +1,6 @@
 package dev.fujioka.java.avancado.web.service;
 
+import dev.fujioka.java.avancado.web.dto.CursoDTO;
 import dev.fujioka.java.avancado.web.model.Curso;
 import dev.fujioka.java.avancado.web.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,14 @@ public class CursoService {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public Curso salvar(Curso curso){
-        jmsTemplate.convertAndSend("matricula_curso_queue", curso);
+    public CursoDTO salvar(Curso curso){
 
-        return cursoRepository.save(curso);
+        curso = cursoRepository.save(curso);
+        jmsTemplate.convertAndSend("matricula_curso_queue", curso);
+        return CursoDTO.builder()
+                .nomeCurso(curso.getNomeCurso())
+                .cargaHoraria(curso.getCargaHoraria())
+                .build();
     }
 
     public Curso alterar(Curso curso){

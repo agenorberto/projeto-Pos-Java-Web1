@@ -1,5 +1,6 @@
 package dev.fujioka.java.avancado.web.resource;
 
+import dev.fujioka.java.avancado.web.dto.CursoDTO;
 import dev.fujioka.java.avancado.web.model.Curso;
 import dev.fujioka.java.avancado.web.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class CursoResource {
 
     //Incluir Curso
     @PostMapping
-    public ResponseEntity<Curso> salvar(@RequestBody Curso curso) {
+    public ResponseEntity<CursoDTO> salvar(@RequestBody Curso curso) {
         return ResponseEntity.ok(cursoService.salvar(curso));
     }
 

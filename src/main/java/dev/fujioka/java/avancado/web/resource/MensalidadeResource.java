@@ -1,5 +1,6 @@
 package dev.fujioka.java.avancado.web.resource;
 
+import dev.fujioka.java.avancado.web.dto.MensalidadeDTO;
 import dev.fujioka.java.avancado.web.model.Mensalidade;
 import dev.fujioka.java.avancado.web.model.Professor;
 import dev.fujioka.java.avancado.web.service.MensalidadeService;
@@ -25,7 +26,7 @@ public class MensalidadeResource {
 
     //Salvar Mensalidades
     @PostMapping
-    public ResponseEntity<Mensalidade> salvar(@RequestBody Mensalidade mensalidade){
+    public ResponseEntity<MensalidadeDTO> salvar(@RequestBody Mensalidade mensalidade){
         return ResponseEntity.ok(mensalidadeService.salvar(mensalidade));
     }
 
